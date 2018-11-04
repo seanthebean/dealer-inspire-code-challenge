@@ -1,0 +1,15 @@
+{
+    "name": "seanthebean/dealer-inspire-code-challenge",
+    "description": "PHP contact form for Dealer Inspire application",
+    "type": "project",
+    "license": "BSD-3-Clause",
+    "authors": [
+        {
+            "name": "Sean Knutson",
+            "email": "seandknutson@gmail.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {},
+    "require-dev": {}
+}
