@@ -115,9 +115,37 @@
             <div class="col-lg-8 col-lg-offset-2">
                 <h2>Contact Guy Smiley</h2>
                 <p>Remember Guy Smiley?  Yeah, he wants to hear from you.</p>
-                <p class="bg-primary">
-                    [[ This is where you'd put your contact form.  Get it done! ]]
-                </p>
+            </div>
+            <div class="text-left col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2">
+                <form method="POST" action="/contact" class="contact-form">
+                    @csrf
+
+                    <div class="form-group">
+                        <label for="full_name">Full Name *</label>
+                        <input type="text" class="form-control" name="full_name" id="full_name" value="">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Email *</label>
+                        <input type="email" class="form-control" name="email" id="email" value="">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="phone">Phone</label>
+                        <input type="tel" class="form-control" name="phone" id="phone" value="">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="message">Message *</label>
+                        <textarea class="form-control" name="message" id="message" rows="10"></textarea>
+                    </div>
+
+                    <div class="alert contact-status hidden"></div>
+
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-default">Send</button>
+                    </div>
+                </form>
             </div>
         </div>
     </section>
@@ -147,6 +175,7 @@
     <!-- Theme JavaScript -->
     <script src="js/grayscale.min.js"></script>
 
+    <script src="js/home.js"></script>
 </body>
 
 </html>
