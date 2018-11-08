@@ -4,14 +4,18 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\ContactForm;
 
 class HomeController extends Controller
 {
-    public function show() {
+    public function show()
+    {
         return view('welcome');
     }
 
-    public function contact(Request $request) {
+    public function contact(Request $request)
+    {
         // validate request
         $validatedData = $request->validate([
             'full_name' => 'required|max:100',
@@ -21,6 +25,7 @@ class HomeController extends Controller
         ]);
 
         // email guy smiley
+        Mail::to('guy-smiley@example.com')->send(new ContactForm($validatedData));
 
         // store in DB
         DB::table('messages')
