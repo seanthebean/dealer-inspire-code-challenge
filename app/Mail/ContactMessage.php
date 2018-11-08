@@ -6,8 +6,9 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Queue\ShouldQueue;
+use App\ContactForm;
 
-class ContactForm extends Mailable
+class ContactMessage extends Mailable
 {
     use Queueable, SerializesModels;
 
@@ -16,9 +17,9 @@ class ContactForm extends Mailable
      *
      * @return void
      */
-    public function __construct(array $data)
+    public function __construct(ContactForm $form)
     {
-        $this->data = $data;
+        $this->form = $form;
     }
 
     /**
@@ -28,14 +29,11 @@ class ContactForm extends Mailable
      */
     public function build()
     {
-        return $this->replyTo($this->data['email'], $this->data['full_name'])
+        return $this->replyTo($this->form->email, $this->form->full_name)
             ->view('email.contact_form')
             ->text('email.contact_form_plaintext')
             ->with([
-                'full_name' => $this->data['full_name'],
-                'email' => $this->data['email'],
-                'phone' => $this->data['phone'],
-                'contact_message' => $this->data['message'], // the $message variable is already used, hence the different name
+                'form' => $this->form,
             ]);
     }
 }

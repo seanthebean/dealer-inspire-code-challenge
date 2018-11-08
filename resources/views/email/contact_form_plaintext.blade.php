@@ -1,10 +1,10 @@
-{!! $full_name !!} sent you a message!
+{!! $form->full_name !!} sent you a message!
 
-Full Name: {!! $full_name !!}
-Email: {!! $email !!}
-Phone: {!! $phone ?? '(not provided)'!!}
+Full Name: {!! $form->full_name !!}
+Email: {!! $form->email !!}
+Phone: {!! $form->phone ?? '(not provided)'!!}
 
 Message:
-{!! $contact_message !!}
+{!! $form->message !!}
 
 If you'd like to respond, simply reply to this email.

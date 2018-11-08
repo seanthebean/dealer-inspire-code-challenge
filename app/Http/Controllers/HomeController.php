@@ -3,9 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Mail;
-use App\Mail\ContactForm;
+use App\Jobs\ProcessContactForm;
+use App\ContactForm;
 
 class HomeController extends Controller
 {
@@ -24,17 +23,7 @@ class HomeController extends Controller
             'message' => 'required',
         ]);
 
-        // email guy smiley
-        Mail::to('guy-smiley@example.com')->send(new ContactForm($validatedData));
-
-        // store in DB
-        DB::table('messages')
-            ->insert([
-                'full_name' => $validatedData['full_name'],
-                'email' => $validatedData['email'],
-                'phone' => $validatedData['phone'],
-                'message' => $validatedData['message'],
-            ]);
+        ProcessContactForm::dispatchNow(new ContactForm($validatedData));
 
         return response()->json([
             'success' => true,
